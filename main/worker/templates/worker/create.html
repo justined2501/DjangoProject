@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+
+{% block content %}<br>
+    <form method="post">
+        {% csrf_token %}
+        <label>Iмя</label>
+        {{ form.name }}<br>
+        <label>Прізвище</label>
+        {{ form.surname }}<br>
+        <label>По-батькові</label>
+        {{ form.patronymic }}<br>
+        <label>Посада</label>
+        {{ form.post }}<br>
+        <label>Телефон</label>
+        {{ form.number }}<br>
+        <label>Email</label>
+        {{ form.email }}<br>
+        {% for error in form.email.errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        <button type="submit">Зарегестрироваться</button>
+    </form>
+{% endblock %}

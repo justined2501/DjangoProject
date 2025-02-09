@@ -4,11 +4,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Профиль</h1>
-    <h3>ПIБ:</h3>
-    <h3>Посада:</h3>
-    <h3>Телефон:</h3>
-    <h3>Email:</h3>
+    <h1>Информация про аккаунт:</h1>
+    <h5>Имя: {{ user.name }}</h5>
+    <h5>Прізвище: {{ user.surname }}</h5>
+    <h5>По-батькові: {{ user.patronymic }}</h5>
+    <h5>Посада: {{ user.post }}</h5>
+    <h5>Телефон: {{ user.number }}</h5>
+    <h5>Email: {{ user.email }}</h5><br><br>
+
+
+
+
 {% endblock %}
 
 

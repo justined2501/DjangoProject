@@ -1,14 +1,21 @@
 {% extends 'main/layout.html' %}
 {% block title %}
-<title>Account</title>
+<title>Shop</title>
 {% endblock %}
 
 {% block content %}
-    <h1>Главное меню сайта</h1>
-    <h4>Сотрудник:</h4>
-    <h4>Автомобиль:</h4>
-    <h4>Дата продажи:</h4>
-    <h4>Реальная цена продажи:</h4>
+<h1>Продажи</h1>
+{% for i in shop %}
+<div>
+    <h5>Співробітник: {{ i.worker }}</h5>
+    <h5>Автомобіль: {{ i.auto }}</h5>
+    <h5>Дата продажи: {{ i.date }}</h5>
+    <h5>Реальная цена продажи: {{ i.really_cost }}</h5>
+</div><br><br>
+
+{% endfor %}
+{#<a href="{% url '..' %}">Назад</a>#}
+
 {% endblock %}
 
 
