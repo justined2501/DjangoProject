@@ -1,15 +1,77 @@
 {% extends 'main/layout.html' %}
 {% block title %}
 <title>Welcome page</title>
-
 {% endblock %}
 
 {% block content %}
-<h1>Главное меню сайта</h1>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиентный фон */
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .welcome-page {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон для контента */
+        border-radius: 15px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome-page h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+    }
+
+    .welcome-page h3 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #dcdcdc;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .btn {
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        color: white;
+        background-color: #ff6f61;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 111, 97, 0.4);
+    }
+
+    .btn:hover {
+        background-color: #e85b50;
+        box-shadow: 0 8px 20px rgba(255, 111, 97, 0.6);
+        transform: translateY(-3px);
+    }
+
+    .btn:active {
+        background-color: #c94a41;
+        transform: translateY(0);
+    }
+</style>
+
+<div class="welcome-page">
+    <h1>Главное меню сайта</h1>
     <h3>Войдите как продавец или как администратор</h3>
-    <a href="worker/login/">Войти как продавец</a>
-    <a href="moderator">Войти как модератор</a>
-
+    <div class="button-group">
+        <a href="worker/login/" class="btn">Войти как продавец</a>
+        <a href="moderator" class="btn">Войти как модератор</a>
+    </div>
+</div>
 {% endblock %}
-
-
