@@ -1,27 +1,27 @@
-{% extends 'main/layout.html' %}
-{% block title %}
-<title>Login</title>
-{% endblock %}
+<form method="post">
+    {% csrf_token %}
+    <label>Ім'я</label>
+    {{ form.first_name }}<br>
+    <label>Прізвище</label>
+    {{ form.last_name }}<br>
+    <label>По-батькові</label>
+    {{ form.patronymic }}<br>
+    <label>Посада</label>
+    {{ form.post }}<br>
+    <label>Телефон</label>
+    {{ form.number }}<br>
+    <label>Email</label>
+    {{ form.email }}<br>
+    <label>Username</label>
+    {{ form.username }}<br>
+    <label>Пароль</label>
+    {{ form.password1 }}<br>
+    <label>Подтвердите пароль</label>
+    {{ form.password2 }}<br>
 
+    {% for error in form.errors %}
+        <li style="color: red;">{{ error }}</li>
+    {% endfor %}
 
-{% block content %}<br>
-    <form method="post">
-        {% csrf_token %}
-        <label>Iмя</label>
-        {{ form.name }}<br>
-        <label>Прізвище</label>
-        {{ form.surname }}<br>
-        <label>По-батькові</label>
-        {{ form.patronymic }}<br>
-        <label>Посада</label>
-        {{ form.post }}<br>
-        <label>Телефон</label>
-        {{ form.number }}<br>
-        <label>Email</label>
-        {{ form.email }}<br>
-        {% for error in form.email.errors %}
-                <li style="color: red;">{{ error }}</li>
-            {% endfor %}
-        <button type="submit">Зарегестрироваться</button>
-    </form>
-{% endblock %}
+    <button type="submit">Зарегистрироваться</button>
+</form>

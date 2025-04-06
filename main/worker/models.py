@@ -1,18 +1,18 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class User(models.Model):
-    name = models.CharField("Iмя", max_length=15)
-    surname = models.CharField("Прізвище", max_length=15)
+class UserProfile(AbstractUser):
     patronymic = models.CharField("По-батькові", max_length=15)
     post = models.CharField("Посада", max_length=30)
     number = models.CharField("Телефон", max_length=15)
-    email = models.EmailField("Email")
-    count_of_sold_cars = models.IntegerField("Продано машин")
-    sold_car = models.ManyToManyField("Auto")
+    count_of_sold_cars = models.IntegerField("Продано машин", default=0)
+    sold_car = models.ManyToManyField("Auto", blank=True)
+
+
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class Auto(models.Model):
@@ -28,7 +28,7 @@ class Auto(models.Model):
 
 
 class Sales(models.Model):
-    worker = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Співробітник")
+    worker = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="Співробітник")
     auto = models.ForeignKey(Auto, on_delete=models.CASCADE, verbose_name="Автомобіль")
     date = models.DateField("Дата продажи")
     really_cost = models.IntegerField("Реальная цена продажи")

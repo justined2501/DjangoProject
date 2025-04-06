@@ -1,31 +1,48 @@
 import datetime
+from audioop import reverse
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.db.models import F, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, FormView
 
 from worker.forms import UserForm
-from worker.models import Auto, Sales, User
+from worker.models import Auto, Sales, UserProfile
+from django.contrib.auth import login
 
 
 # Create your views here.
-def index(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    return render(request, "worker/index.html", {'user': user})
+class IndexDetailView(DetailView):
+    model = UserProfile
+    template_name = 'worker/index.html'
+    context_object_name = 'user'
+    pk_url_kwarg = 'pk'
 
 
-def auto(request, user_id):
-    auto = Auto.objects.filter(is_sell=False)
-    return render(request, "worker/auto.html", {'auto': auto, "user_id": user_id})
+class AutoListView(ListView):
+    model = Auto
+    template_name = 'worker/auto.html'
+    context_object_name = 'auto'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        context['pk'] = pk
+        return context
+
+    def get_queryset(self):
+        return Auto.objects.filter(is_sell=False)  # не проданные авто
 
 
-def sell_auto(request, user_id: int, auto_id: int):
+def sell_auto(request, pk: int, auto_id: int):
     try:
         auto = Auto.objects.get(id=auto_id)
         auto.is_sell = True
         Sales.objects.create(
-            worker_id=user_id, auto_id=auto_id, date=datetime.datetime.now(),
+            worker_id=pk, auto_id=auto_id, date=datetime.datetime.now(),
             really_cost=auto.selling_price
         )
         auto.save()
@@ -33,54 +50,90 @@ def sell_auto(request, user_id: int, auto_id: int):
         return render(
             request,
             "worker/error_sell_auto.html",
-            {"user_id": user_id, "error": "Произошла ошибка! Пожалуйста, попробуйте позже."}
+            {"pk": pk, "error": "Произошла ошибка! Пожалуйста, попробуйте позже."}
         )
-    url = reverse_lazy('worker:auto', kwargs={'user_id': user_id})
+    url = reverse_lazy('worker:auto', kwargs={'pk': pk})
     return redirect(url)
 
 
-def account(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    profit = 0
-    sales_qs = Sales.objects.filter(worker_id=user_id)
-    for sales in sales_qs:
-        profit += sales.really_cost
+class AccountDetailView(DetailView):
+    model = UserProfile
+    template_name = "worker/account.html"
+    context_object_name = 'user'
+    pk_url_kwarg = 'pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        profite = 0
+        sales_qs = Sales.objects.filter(worker_id=pk)
+        for sale in sales_qs:
+            profite += sale.really_cost
+        context['profite'] = profite
+        return context
 
 
-    return render(request, "worker/account.html", {'user': user, "profit": profit})
+class ShopListView(ListView):
+    model = Sales
+    template_name = "worker/shop.html"
+    context_object_name = 'shop'
+    pk_url_kwarg = 'pk'
+
+    def get_queryset(self, **kwargs):  # будет фильтровать продажи в будущем
+        pass
 
 
-def shop(request, user_id):
-    shop = Sales.objects.all
-    return render(request, "worker/shop.html", {'shop': shop})
+from django.contrib.auth import authenticate
 
 
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        try:
-            user = User.objects.get(name=username)
-            return redirect('worker:index', user_id=user.id)
-        except User.DoesNotExist as err:
-            print(err)
-            return render(request, 'worker/login.html', {'error': 'User does not exist'})
-    return render(request, "worker/login.html")
+# ==============================================================================
 
+class UserLoginView(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'worker/login.html'
 
-def create(request):
-    print(request.method)
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.count_of_sold_cars = 0
-            user.save()
-            return redirect('worker:index', user_id=user.id)
+    def form_valid(self, form):
+        print("Форма валидна")
+
+        user = form.get_user()
+        if user is not None:
+            print("Пользователь прошёл аутентификацию:", user.username)
         else:
-            print(form.errors)
-            data = {'form': form}
-            return render(request, "worker/create.html", data)
-    form = UserForm()
-    data = {'form': form}
-    return render(request, "worker/create.html", data)
+            print("Пользователь не прошёл аутентификацию")
 
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("Форма НЕ валидна")
+        print("Ошибки формы:", form.errors)
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        user = self.request.user
+        if user.is_authenticated:
+            # Проверяем, существует ли user.id перед реверсом
+            if user.id:
+                return reverse_lazy('worker:index', kwargs={'pk': user.id})
+            else:
+                return reverse('worker:login')  # Если нет id, возвращаем на страницу логина
+        else:
+            return reverse('worker:login')  # Если пользователь не аутентифицирован
+
+
+# ==============================================================================
+
+
+class UserCreateView(CreateView):
+    model = UserProfile
+    template_name = "worker/create.html"
+    form_class = UserForm
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password1'])
+        user.count_of_sold_cars = 0
+        user.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('worker:index', kwargs={'pk': self.object.id})
