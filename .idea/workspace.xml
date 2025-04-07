@@ -24,8 +24,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b155bbf8-2a00-446a-8a2a-c674b532a621" name="Changes" comment="ignore __pycache__">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/048cef27-2eba-48f1-8048-6bf350f1b178.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/048cef27-2eba-48f1-8048-6bf350f1b178/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +241,7 @@
       <workItem from="1743932637041" duration="9000" />
       <workItem from="1743940177903" duration="13778000" />
       <workItem from="1743965467788" duration="15000" />
-      <workItem from="1744043514181" duration="7458000" />
+      <workItem from="1744043514181" duration="7764000" />
     </task>
     <task id="LOCAL-00001" summary="ekz">
       <option name="closed" value="true" />
