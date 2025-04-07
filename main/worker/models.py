@@ -9,8 +9,6 @@ class UserProfile(AbstractUser):
     count_of_sold_cars = models.IntegerField("Продано машин", default=0)
     sold_car = models.ManyToManyField("Auto", blank=True)
 
-
-
     def __str__(self):
         return self.username
 

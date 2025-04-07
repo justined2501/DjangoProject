@@ -3,10 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
 from django.forms import ModelForm, Textarea, TextInput, Form
 
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
+
 
 class UserForm(UserCreationForm):
     class Meta:
@@ -22,7 +22,4 @@ class UserForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
-
-
 # class AutoForm(Form):
-

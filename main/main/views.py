@@ -11,5 +11,3 @@ class WelcomePageView(TemplateView):
         user = self.request.user
         context['user'] = user
         return context
-
-

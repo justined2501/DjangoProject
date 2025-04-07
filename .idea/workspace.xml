@@ -24,66 +24,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b155bbf8-2a00-446a-8a2a-c674b532a621" name="Changes" comment="ignore __pycache__">
-      <change afterPath="$PROJECT_DIR$/main/static/main/image.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main/templates/main/welcomepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/main/templates/main/welcomepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-grid.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-reboot.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap-utilities.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/css/bootstrap.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.esm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.esm.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.esm.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/bootstrap/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/worker/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/moderator/templates/moderator/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/moderator/templates/moderator/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/moderator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/moderator/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/moderator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/moderator/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/worker/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/worker/migrations/0002_auto_is_sell.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/auto.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/worker/templates/worker/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/templates/worker/shop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/worker/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/worker/views.py" afterDir="false" />
     </list>
@@ -177,11 +132,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Михаил\PycharmProjects\main" />
       <recent name="C:\Users\Михаил\PycharmProjects\main\main\static\main" />
       <recent name="C:\Users\Михаил\PycharmProjects\main\main\static" />
       <recent name="C:\Users\Михаил\PycharmProjects\main\main\staticfiles" />
       <recent name="C:\Users\Михаил\PycharmProjects\main\main" />
-      <recent name="C:\Users\Михаил\PycharmProjects\DjangoProject" />
     </key>
   </component>
   <component name="RunManager">
@@ -291,7 +246,9 @@
       <workItem from="1743499293391" duration="5000" />
       <workItem from="1743618199629" duration="7000" />
       <workItem from="1743932637041" duration="9000" />
-      <workItem from="1743940177903" duration="12009000" />
+      <workItem from="1743940177903" duration="13778000" />
+      <workItem from="1743965467788" duration="15000" />
+      <workItem from="1744043514181" duration="4950000" />
     </task>
     <task id="LOCAL-00001" summary="ekz">
       <option name="closed" value="true" />

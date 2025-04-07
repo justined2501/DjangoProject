@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<br>
+    <br>
     <form method="post">
         {% csrf_token %}
         <p>Введите логин</p>
@@ -22,7 +22,8 @@
             </ul>
         {% endif %}
 
-        <button type="submit">Войти</button><br><br>
+        <button type="submit">Войти</button>
+        <br><br>
         <a href="{% url 'worker:create' %}">Зарегистрироваться</a>
     </form>
 {% endblock %}
