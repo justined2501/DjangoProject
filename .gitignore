@@ -1,5 +1,5 @@
 .venv1
-db.sqlite3
+main/db.sqlite3
 staticfiles
 .venv/
 .env
