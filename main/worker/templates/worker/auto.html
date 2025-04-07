@@ -1,24 +1,24 @@
 {% extends 'main/layout.html' %}
 {% block title %}
-<title>Auto</title>
+    <title>Auto</title>
 {% endblock %}
 
 {% block content %}
-<h1>Автомобили</h1>
-{% for i in auto %}
-<div>
-    <h5>Назва виробника: {{ i.title }}</h5>
-    <h5>Piк випуску: {{ i.year_of_release }}</h5>
-    <h5>Модель: {{ i.model }}</h5>
-    <h5>Собівартість: {{ i.Cost }}</h5>
-    <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
-    <a href="">Продать</a><br><br><br>
+    <h1>Автомобили</h1>
+    {% for i in auto %}
+        <div>
+            <h5>Назва виробника: {{ i.title }}</h5>
+            <h5>Piк випуску: {{ i.year_of_release }}</h5>
+            <h5>Модель: {{ i.model }}</h5>
+            <h5>Собівартість: {{ i.Cost }}</h5>
+            <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
+            <a href="">Продать</a><br><br><br>
 
-</div>
+        </div>
 
-{% endfor %}
+    {% endfor %}
 
-{#    <a href="{% url 'index' %}">Назад</a>#}
+    {#    <a href="{% url 'index' %}">Назад</a>#}
 {% endblock %}
 
 

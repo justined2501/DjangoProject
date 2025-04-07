@@ -1,37 +1,25 @@
-from .models import User
+from django.contrib.auth.forms import UserCreationForm
+
+from .models import UserProfile
 from django.forms import ModelForm, Textarea, TextInput, Form
 
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import UserProfile
 
-class UserForm(ModelForm):
+
+class UserForm(UserCreationForm):
     class Meta:
-        model = User
-        fields = ['name', 'surname', 'patronymic', 'post', 'number', 'email']
+        model = UserProfile
+        fields = ['username', 'first_name', 'last_name', 'patronymic', 'post', 'number', 'email']
         widgets = {
-            "name": TextInput(attrs={
-                'class': 'form-control',
-
-            }),
-            "surname": TextInput(attrs={
-                'class': 'form-control',
-
-            }),
-            "patronymic": TextInput(attrs={
-                'class': 'form-control',
-
-            }),
-            "post": TextInput(attrs={
-                'class': 'form-control',
-
-            }),
-            "number": TextInput(attrs={
-                'class': 'form-control',
-
-            }),
-            "email": TextInput(attrs={
-                'class': 'form-control',
-            }),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
+            'post': forms.TextInput(attrs={'class': 'form-control'}),
+            'number': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
-
 # class AutoForm(Form):
-#

@@ -1,13 +1,12 @@
 from django.urls import path
-
 from . import views
+from .views import AutoListView, AccountDetailView, ShopListView, UserCreateView, UserLoginView, UserHome
 
 urlpatterns = [
-    path('<int:user_id>/', views.index,name="index"),
-    path('<int:user_id>/auto', views.auto, name="auto"),
-    path('<int:user_id>/account', views.account,name="account"),
-    path('<int:user_id>/shop', views.shop, name="shop"),
-    path('login/', views.login, name="login"),
-    path('create/', views.create, name="create"),
-
+    path('<int:pk>/', UserHome.as_view(), name="index"),
+    path('<int:pk>/auto', AutoListView.as_view(), name="auto"),
+    path('<int:pk>/account', AccountDetailView.as_view(), name="account"),
+    path('<int:pk>/shop', ShopListView.as_view(), name="shop"),
+    path('login/', UserLoginView.as_view(), name="login"),
+    path('create/', UserCreateView.as_view(), name="create"),
 ]
