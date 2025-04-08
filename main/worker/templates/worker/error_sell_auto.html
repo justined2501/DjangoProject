@@ -1,46 +1,46 @@
-{% extends "main/layout.html" %}
-
-{% block css %}
-    <style>
-        .error-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #721c24;
-            color: #fff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .error-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #f8d7da;
-            color: #721c24;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .error-btn:hover {
-            background-color: #f5c6cb;
-        }
-    </style>
-{% endblock css %}
-
-{% block content %}
-
-    <div class="error-box">
-        {{ error }}
-        <div>
-            <a href="{% url 'worker:auto' user_id %}" class="error-btn">Вернутся назад</a>
-        </div>
-    </div>
-{% endblock content %}
+{#{% extends "main/layout.html" %}#}
+{##}
+{#{% block css %}#}
+{#    <style>#}
+{#        .error-box {#}
+{#            position: fixed;#}
+{#            top: 50%;#}
+{#            left: 50%;#}
+{#            transform: translate(-50%, -50%);#}
+{#            background-color: #721c24;#}
+{#            color: #fff;#}
+{#            padding: 20px 40px;#}
+{#            border-radius: 8px;#}
+{#            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);#}
+{#            text-align: center;#}
+{#            font-size: 18px;#}
+{#            font-weight: bold;#}
+{#        }#}
+{##}
+{#        .error-btn {#}
+{#            display: inline-block;#}
+{#            margin-top: 15px;#}
+{#            padding: 10px 20px;#}
+{#            background-color: #f8d7da;#}
+{#            color: #721c24;#}
+{#            text-decoration: none;#}
+{#            font-weight: bold;#}
+{#            border-radius: 5px;#}
+{#            transition: background 0.3s ease;#}
+{#        }#}
+{##}
+{#        .error-btn:hover {#}
+{#            background-color: #f5c6cb;#}
+{#        }#}
+{#    </style>#}
+{#{% endblock css %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#    <div class="error-box">#}
+{#        {{ error }}#}
+{#        <div>#}
+{#            <a href="{% url 'welcomepage' user_id %}" class="error-btn">Вернутся назад</a>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock content %}#}

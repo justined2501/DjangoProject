@@ -1,23 +1,34 @@
 {% extends 'main/layout.html' %}
 {% block title %}
-    <title>Welcome page</title>
+    <title>Auto</title>
 {% endblock %}
 
 {% block content %}
+    <h1>Автомобили</h1>
+    {% for i in auto %}
+        <div>
+            <h5>Назва виробника: {{ i.title }}</h5>
+            <h5>Piк випуску: {{ i.year_of_release }}</h5>
+            <h5>Модель: {{ i.model }}</h5>
+            <h5>Собівартість: {{ i.Cost }}</h5>
+            <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
 
-    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
-        <div class="bg-primary text-white p-3">
-            <div class="welcome-page">
-                <h1>Главное меню сайта</h1>
-                <h3>Войдите как продавец или как администратор</h3>
-                <div class="button-group">
-                    <a href="worker/login/" class="btn">Войти как продавец</a>
-                    <a href="moderator" class="btn">Войти как модератор</a>
-                </div>
-            </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'sell_auto' user.id i.id %}">Продать</a>
+            {% else %}
+                <a href="{% url 'worker:login' %}?next={{ request.path }}">Продать (требуется вход)</a>
+            {% endif %}
+            <br><br><br>
         </div>
-    </div>
+    {% endfor %}
 
 
-
+    {#    <a href="{% url 'index' %}">Назад</a>#}
 {% endblock %}
+
+
+
+
+
+
+
