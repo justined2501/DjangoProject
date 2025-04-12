@@ -10,11 +10,10 @@
             <h5>Назва виробника: {{ i.title }}</h5>
             <h5>Piк випуску: {{ i.year_of_release }}</h5>
             <h5>Модель: {{ i.model }}</h5>
-            <h5>Собівартість: {{ i.Cost }}</h5>
+            <h5>Собівартість: {{ i.cost }}</h5>
             <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
 
             {% if user.is_authenticated %}
-                <a href="{% url 'sell_auto' user.id i.id %}">Продать</a>
             {% else %}
                 <a href="{% url 'worker:login' %}?next={{ request.path }}">Продать (требуется вход)</a>
             {% endif %}
@@ -24,7 +23,6 @@
 
 
 
-    {#    <a href="{% url 'index' %}">Назад</a>#}
 {% endblock %}
 
 

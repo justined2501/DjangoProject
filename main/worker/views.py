@@ -17,20 +17,18 @@ from django.contrib.auth import login
 
 
 # Create your views here.
-class WelcomePageForAuthorizedUser(LoginRequiredMixin, DetailView):
+class AutoListView(LoginRequiredMixin, DetailView):
     model = UserProfile
-    template_name = 'worker/index.html'
+    template_name = 'main/list_auto.html'
     context_object_name = 'user'
-    login_url = 'worker:login'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect('worker:login')
-        return super().dispatch(request, *args, **kwargs)
 
-class EditProfile(LoginRequiredMixin, UpdateView):
+
+
+
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
-    template_name = 'worker/edit_profile.html'
+    template_name = 'worker/edit.html'
     context_object_name = 'user'
     form_class = UserEditForm
 
@@ -42,31 +40,11 @@ class EditProfile(LoginRequiredMixin, UpdateView):
 
 
 
-class AutoListView(ListView):
-    model = Auto
-    template_name = 'main/welcomepage.html'
-    context_object_name = 'auto'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-    def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return Auto.objects.filter(is_sell=False)
-        return Auto.objects.none()
-
-
-# не проданные авто
-
-# class SellAutoView(View):
-#
-
-
-
-class AccountDetailView(DetailView):
+#Профиль
+class UserProfileDetailView(DetailView):
     model = UserProfile
-    template_name = "worker/account.html"
+    template_name = "worker/detail.html"
     context_object_name = 'user'
 
     def dispatch(self, request, *args, **kwargs):
@@ -91,8 +69,7 @@ class ShopListView(ListView):
     template_name = "worker/shop.html"
     context_object_name = 'shop'
 
-    def get_queryset(self, **kwargs):  # будет фильтровать продажи в будущем
-        pass
+
 
 
 class UserLoginView(LoginView):
@@ -103,7 +80,7 @@ class UserLoginView(LoginView):
         next_url = self.request.GET.get("next")
         if next_url:
             return next_url
-        return reverse_lazy('worker:index', kwargs={'pk': self.request.user.pk})
+        return reverse_lazy('worker:auto_list_view', kwargs={'pk': self.request.user.pk})
 
 
 class UserCreateView(CreateView):
@@ -119,4 +96,4 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('worker:index', kwargs={'pk': self.object.id})
+        return reverse_lazy('worker:auto_list_view', kwargs={'pk': self.object.id})
