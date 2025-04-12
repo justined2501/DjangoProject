@@ -29,7 +29,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
                            href="
-                                   {% if user.is_authenticated %}{% url 'worker:account' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:auto' pk=0 %}{% endif %}">
+
+                                   {% if user.is_authenticated %}{% url 'worker:account' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
                             Профиль продавца <i class="fa-solid fa-user"></i>
                         </a>
                     </li>
@@ -38,7 +39,8 @@
                     <li class="nav-item">
                         <a class="nav-link"
                            href="
-                                   {% if user.is_authenticated %}{% url 'worker:auto' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:auto' pk=0 %}{% endif %}">
+
+                                   {% if user.is_authenticated %}{% url 'worker:auto' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
                             Новости <i class="fa-solid fa-car-side"></i>
                         </a>
                     </li>
@@ -47,13 +49,14 @@
                     <li class="nav-item">
                         <a class="nav-link"
                            href="
-                                   {% if user.is_authenticated %}{% url 'worker:shop' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:shop' pk=0 %}{% endif %}">
+
+                                   {% if user.is_authenticated %}{% url 'worker:shop' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
                             Продажи <i class="fa-brands fa-shopify"></i>
                         </a>
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
-                    <form action="{% url 'logout' %}" method="post" class="ms-3">
+                    <form action="{% url 'worker:logout' %}" method="post" class="ms-3">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-outline-danger btn-sm">Выйти</button>
                     </form>
@@ -63,15 +66,14 @@
                     <div class="d-flex align-items-center ms-3">
                         <a href="{% url 'worker:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти как
                             продавец</a>
-                        {#                <a href="{% url 'moderator:login' %}" class="btn btn-outline-secondary btn-sm">Войти как модератор</a>#}
                     </div>
                 {% endif %}
 
                 <!-- Поле поиска -->
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                    <button class="btn btn-success" type="submit">Найти</button>
-                </form>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                        <button class="btn btn-success" type="submit">Найти</button>
+                    </form>
             </div>
         </div>
     </nav>

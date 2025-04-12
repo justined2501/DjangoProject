@@ -17,11 +17,10 @@ from django.contrib.auth import login
 
 
 # Create your views here.
-class StartPage(LoginRequiredMixin, DetailView):
+class WelcomePageForAuthorizedUser(LoginRequiredMixin, DetailView):
     model = UserProfile
     template_name = 'worker/index.html'
     context_object_name = 'user'
-    pk_url_kwarg = 'pk'
     login_url = 'worker:login'
 
     def dispatch(self, request, *args, **kwargs):
@@ -33,17 +32,7 @@ class EditProfile(LoginRequiredMixin, UpdateView):
     model = UserProfile
     template_name = 'worker/edit_profile.html'
     context_object_name = 'user'
-    pk_url_kwarg = 'pk'
     form_class = UserEditForm
-
-    def form_valid(self, form):
-        print("==> Форма валидна!")
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        print("==> Форма не валидна!")
-        print(form.errors)  # покажет ошибки
-        return super().form_invalid(form)
 
     def get_object(self, queryset = None):
         return self.request.user
@@ -79,7 +68,6 @@ class AccountDetailView(DetailView):
     model = UserProfile
     template_name = "worker/account.html"
     context_object_name = 'user'
-    pk_url_kwarg = 'pk'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.pk != kwargs.get('pk'):
@@ -102,7 +90,6 @@ class ShopListView(ListView):
     model = Sales
     template_name = "worker/shop.html"
     context_object_name = 'shop'
-    pk_url_kwarg = 'pk'
 
     def get_queryset(self, **kwargs):  # будет фильтровать продажи в будущем
         pass
