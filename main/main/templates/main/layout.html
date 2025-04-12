@@ -28,7 +28,8 @@
                     <!-- Профиль продавца -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="{% if user.is_authenticated %}{% url 'worker:account' pk=user.pk %}{% endif %}">
+                           href="
+                                   {% if user.is_authenticated %}{% url 'worker:account' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:auto' pk=0 %}{% endif %}">
                             Профиль продавца <i class="fa-solid fa-user"></i>
                         </a>
                     </li>
@@ -36,19 +37,35 @@
                     <!-- Автомобили -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% if user.is_authenticated %}{% url 'worker:auto' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:auto' pk=0 %}{% endif %}">
-                            Автомобили <i class="fa-solid fa-car-side"></i>
+                           href="
+                                   {% if user.is_authenticated %}{% url 'worker:auto' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:auto' pk=0 %}{% endif %}">
+                            Новости <i class="fa-solid fa-car-side"></i>
                         </a>
                     </li>
 
                     <!-- Продажи -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% if user.is_authenticated %}{% url 'worker:shop' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:shop' pk=0 %}{% endif %}">
+                           href="
+                                   {% if user.is_authenticated %}{% url 'worker:shop' pk=user.pk %}{% else %}{% url 'worker:login' %}?next={% url 'worker:shop' pk=0 %}{% endif %}">
                             Продажи <i class="fa-brands fa-shopify"></i>
                         </a>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post" class="ms-3">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Выйти</button>
+                    </form>
+                {% endif %}
+
+                {% if not user.is_authenticated %}
+                    <div class="d-flex align-items-center ms-3">
+                        <a href="{% url 'worker:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти как
+                            продавец</a>
+                        {#                <a href="{% url 'moderator:login' %}" class="btn btn-outline-secondary btn-sm">Войти как модератор</a>#}
+                    </div>
+                {% endif %}
 
                 <!-- Поле поиска -->
                 <form class="d-flex" role="search">

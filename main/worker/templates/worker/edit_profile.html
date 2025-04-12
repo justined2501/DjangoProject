@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>Редактирование профиля</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Редактировать профиль</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_first_name">Имя:</label>
+        {{ form.first_name }}<br><br>
+        <label for="id_last_name">Фамилия:</label>
+        {{ form.last_name }}<br>
+        <label for="id_patronymic">Отчество:</label>
+        {{ form.patronymic }}<br>
+        <label for="id_post">Должность:</label>
+        {{ form.post }}<br>
+        <label for="id_email">Почта:</label>
+        {{ form.email }}<br>
+        <label for="id_number">Телефон:</label>
+        {{ form.number }}<br>
+        <button type="submit">Сохранить</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,6 +1,7 @@
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 from . import views
-from .views import AutoListView, AccountDetailView, ShopListView, UserCreateView, UserLoginView, StartPage
+from .views import AutoListView, AccountDetailView, ShopListView, UserCreateView, UserLoginView, StartPage, EditProfile
 
 urlpatterns = [
     path('<int:pk>/', StartPage.as_view(), name="index"),
@@ -9,5 +10,5 @@ urlpatterns = [
     path('<int:pk>/shop', ShopListView.as_view(), name="shop"),
     path('login/', UserLoginView.as_view(), name="login"),
     path('create/', UserCreateView.as_view(), name="create"),
-
+    path('account/edit/', EditProfile.as_view(), name='edit_profile'),
 ]

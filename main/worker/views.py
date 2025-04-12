@@ -9,9 +9,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, FormView
+from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView
 
-from worker.forms import UserForm
+from worker.forms import UserForm, UserEditForm
 from worker.models import Auto, Sales, UserProfile
 from django.contrib.auth import login
 
@@ -28,6 +28,29 @@ class StartPage(LoginRequiredMixin, DetailView):
         if not request.user.is_authenticated:
             return redirect('worker:login')
         return super().dispatch(request, *args, **kwargs)
+
+class EditProfile(LoginRequiredMixin, UpdateView):
+    model = UserProfile
+    template_name = 'worker/edit_profile.html'
+    context_object_name = 'user'
+    pk_url_kwarg = 'pk'
+    form_class = UserEditForm
+
+    def form_valid(self, form):
+        print("==> Форма валидна!")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("==> Форма не валидна!")
+        print(form.errors)  # покажет ошибки
+        return super().form_invalid(form)
+
+    def get_object(self, queryset = None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse_lazy('worker:account', kwargs={'pk': self.object.pk})
+
 
 
 class AutoListView(ListView):

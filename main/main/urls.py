@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from . import views
 from .views import WelcomePageView
@@ -9,5 +10,6 @@ urlpatterns = [
     path('', WelcomePageView.as_view(), name="welcomepage"),
     path('moderator/', include('moderator.urls')),
     path('sell/<int:pk>/<int:auto_id>/', views.sell_auto, name='sell_auto'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
 
 ]
