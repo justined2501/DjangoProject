@@ -22,4 +22,7 @@ class UserForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
-# class AutoForm(Form):
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name', 'last_name', 'patronymic', 'post', 'number', 'email']
