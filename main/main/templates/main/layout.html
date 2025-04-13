@@ -35,12 +35,12 @@
                         </a>
                     </li>
 
-                    <!-- Автомобили -->
+                    <!-- Новости -->
                     <li class="nav-item">
                         <a class="nav-link"
                            href="
 
-                                   {% if user.is_authenticated %}{% url 'worker:auto' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
+                                   {% if user.is_authenticated %}{% url 'worker:news' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
                             Новости <i class="fa-solid fa-car-side"></i>
                         </a>
                     </li>

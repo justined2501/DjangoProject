@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView, TemplateView
 
 from worker.forms import UserForm, UserEditForm
 from worker.models import Auto, Sales, UserProfile
@@ -17,14 +17,14 @@ from django.contrib.auth import login
 
 
 # Create your views here.
-class AutoListView(LoginRequiredMixin, DetailView):
+class AuthenticatedAutoListView(LoginRequiredMixin, DetailView):
     model = UserProfile
     template_name = 'main/list_auto.html'
     context_object_name = 'user'
 
-
-
-
+class NewsView(TemplateView):
+    template_name = 'worker/news.html'
+    context_object_name = 'news'
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile

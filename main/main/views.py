@@ -7,7 +7,7 @@ from django.views.generic import TemplateView,ListView
 from worker.models import Auto, Sales
 
 
-class WelcomePageView(ListView):
+class PublicAutoListView(ListView):
     model = Auto
     template_name = 'main/list_auto.html'
     context_object_name = 'auto'
