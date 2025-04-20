@@ -1,48 +1,34 @@
-import datetime
-from audioop import reverse
-
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.db.models import F, Sum
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, FormView, UpdateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 
-from worker.forms import UserForm, UserEditForm
-from worker.models import Auto, Sales, UserProfile
-from django.contrib.auth import login
+from worker.forms import UserProfileForm, UserProfileUpdateForm
+from worker.models import Sales, UserProfile
 
-
-# Create your views here.
-class AuthenticatedAutoListView(LoginRequiredMixin, DetailView):
-    model = UserProfile
-    template_name = 'main/list_auto.html'
-    context_object_name = 'user'
 
 class NewsView(TemplateView):
     template_name = 'worker/news.html'
     context_object_name = 'news'
 
+
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
     template_name = 'worker/edit.html'
     context_object_name = 'user'
-    form_class = UserEditForm
+    form_class = UserProfileUpdateForm
 
-    def get_object(self, queryset = None):
+    def get_object(self, queryset=None):
         return self.request.user
 
     def get_success_url(self):
         return reverse_lazy('worker:account', kwargs={'pk': self.object.pk})
 
 
-
-
-#Профиль
-class UserProfileDetailView(DetailView):
+# Профиль
+class UserProfileDetailView(LoginRequiredMixin, DetailView):
     model = UserProfile
     template_name = "worker/detail.html"
     context_object_name = 'user'
@@ -63,13 +49,10 @@ class UserProfileDetailView(DetailView):
         return context
 
 
-
 class ShopListView(ListView):
     model = Sales
     template_name = "worker/shop.html"
     context_object_name = 'shop'
-
-
 
 
 class UserLoginView(LoginView):
@@ -80,13 +63,13 @@ class UserLoginView(LoginView):
         next_url = self.request.GET.get("next")
         if next_url:
             return next_url
-        return reverse_lazy('worker:auto_list_view', kwargs={'pk': self.request.user.pk})
+        return reverse_lazy('worker:auto_list', kwargs={'pk': self.request.user.pk})
 
 
 class UserCreateView(CreateView):
     model = UserProfile
     template_name = "worker/create.html"
-    form_class = UserForm
+    form_class = UserProfileForm
 
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -96,4 +79,4 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('worker:auto_list_view', kwargs={'pk': self.object.id})
+        return reverse_lazy('worker:auto_list', kwargs={'pk': self.object.id})

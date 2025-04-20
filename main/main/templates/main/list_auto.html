@@ -12,17 +12,8 @@
             <h5>Модель: {{ i.model }}</h5>
             <h5>Собівартість: {{ i.cost }}</h5>
             <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
-
-            {% if user.is_authenticated %}
-            {% else %}
-                <a href="{% url 'worker:login' %}?next={{ request.path }}">Продать (требуется вход)</a>
-            {% endif %}
-            <br><br><br>
         </div>
     {% endfor %}
-
-
-
 {% endblock %}
 
 
