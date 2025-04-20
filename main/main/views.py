@@ -1,13 +1,18 @@
-from django.shortcuts import render
+from datetime import datetime
+
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView,ListView
+from worker.models import Auto, Sales
 
 
-class WelcomePageView(TemplateView):
-    template_name = "main/welcomepage.html"
+class AutoListView(ListView):
+    model = Auto
+    template_name = 'main/list_auto.html'
+    context_object_name = 'auto'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.request.user
-        context['user'] = user
-        return context
+
+
+
+

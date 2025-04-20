@@ -1,64 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Главная</title>
 
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
     <script src="https://kit.fontawesome.com/648c932fa1.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<!-- Навбар -->
 <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="
-
-                    {% if user.is_authenticated %}{% url 'worker:index' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
+            <a class="navbar-brand" href="{% url 'auto_list' %}">
                 На главную <i class="fa fa-home"></i>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    aria-expanded="false" aria-label="Переключить навигацию">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <!-- Профиль продавца -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
                            href="
 
-                                   {% if user.is_authenticated %}{% url 'worker:account' pk=user.id %}{% else %}{% url 'worker:login' %}{% endif %}">
+                                   {% if user.is_authenticated %}{% url 'worker:account' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
                             Профиль продавца <i class="fa-solid fa-user"></i>
                         </a>
                     </li>
+
+                    <!-- Новости -->
                     <li class="nav-item">
                         <a class="nav-link"
                            href="
 
-                                   {% if user.is_authenticated %}{% url 'worker:auto' pk=user.id %}{% else %}{% url 'worker:login' %}{% endif %}">
-                            Автомобили <i class="fa-solid fa-car-side"></i>
+                                   {% if user.is_authenticated %}{% url 'worker:news' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
+                            Новости <i class="fa-solid fa-car-side"></i>
                         </a>
                     </li>
 
-                    <a class="nav-link"
-                       href="
+                    <!-- Продажи -->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="
 
-                               {% if user.is_authenticated %}{% url 'worker:shop' pk=user.id %}{% else %}{% url 'worker:login' %}{% endif %}">
-                        Продажи <i class="fa-brands fa-shopify"></i>
-                    </a>
+                                   {% if user.is_authenticated %}{% url 'worker:shop' pk=user.pk %}{% else %}{% url 'worker:login' %}{% endif %}">
+                            Продажи <i class="fa-brands fa-shopify"></i>
+                        </a>
+                    </li>
                 </ul>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'worker:logout' %}" method="post" class="ms-3">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Выйти</button>
+                    </form>
+                {% endif %}
 
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                </form>
+                {% if not user.is_authenticated %}
+                    <div class="d-flex align-items-center ms-3">
+                        <a href="{% url 'worker:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти</a>
+                    </div>
+                {% endif %}
+
+                <!-- Поле поиска -->
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                        <button class="btn btn-success" type="submit">Найти</button>
+                    </form>
             </div>
         </div>
     </nav>
 </div>
-<div>
+
+<!-- Картинка -->
+<div class="text-center mt-3">
     <img src="{% static 'main/image.jpg' %}"
          style="width: 500px; height: auto; border-radius: 35px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);"
          alt="Красивая картинка">
@@ -66,9 +87,12 @@
 
 {% block content %}{% endblock %}
 
-<footer>
-    Надеемся на сотрудничество 2025(С)
+<!-- Подвал -->
+<footer class="text-center mt-3">
+    Надеемся на сотрудничество © 2025
 </footer>
+
 <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
+
