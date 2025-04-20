@@ -14,7 +14,7 @@
 <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'auto_list' %}">
+            <a class="navbar-brand" href="{% url 'auto:list' %}">
                 На главную <i class="fa fa-home"></i>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,9 +28,7 @@
                     <!-- Профиль продавца -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="
-
-                                   {% if user.is_authenticated %}{% url 'account:account' pk=user.pk %}{% else %}{% url 'account:login' %}{% endif %}">
+                           href="{% if user.is_authenticated %}{% url 'account:detail' %}{% else %}{% url 'account:login' %}{% endif %}">
                             Профиль продавца <i class="fa-solid fa-user"></i>
                         </a>
                     </li>
@@ -38,22 +36,12 @@
                     <!-- Новости -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="
-
-                                   {% if user.is_authenticated %}{% url 'account:news' pk=user.pk %}{% else %}{% url 'account:login' %}{% endif %}">
+                           href="{% if user.is_authenticated %}{% url 'news:list' %}{% else %}{% endif %}">
                             Новости <i class="fa-solid fa-car-side"></i>
                         </a>
                     </li>
 
                     <!-- Продажи -->
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="
-
-                                   {% if user.is_authenticated %}{% url 'account:shop' pk=user.pk %}{% else %}{% url 'account:login' %}{% endif %}">
-                            Продажи <i class="fa-brands fa-shopify"></i>
-                        </a>
-                    </li>
                 </ul>
                 {% if user.is_authenticated %}
                     <form action="{% url 'account:logout' %}" method="post" class="ms-3">

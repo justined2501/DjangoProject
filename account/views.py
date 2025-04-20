@@ -22,12 +22,19 @@ class UserProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = "account/detail.html"
     context_object_name = 'user'
 
+    def get_object(self, queryset=None):
+        return self.request.user
+
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
     template_name = 'account/update.html'
     context_object_name = 'user'
     form_class = UserProfileUpdateForm
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
 
     def get_object(self, queryset=None):
         return self.request.user
