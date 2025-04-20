@@ -2,15 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class UserProfile(AbstractUser):
-    patronymic = models.CharField("По-батькові", max_length=15)
-    post = models.CharField("Посада", max_length=30)
-    number = models.CharField("Телефон", max_length=15)
-    count_of_sold_cars = models.IntegerField("Продано машин", default=0)
-    sold_car = models.ManyToManyField("Auto", blank=True)
 
-    def __str__(self):
-        return self.username
 
 
 class Auto(models.Model):
