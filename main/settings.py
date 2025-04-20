@@ -124,4 +124,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.UserProfile'
-LOGIN_URL = 'worker:login'
+LOGIN_URL = 'account:login'
