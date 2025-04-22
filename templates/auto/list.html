@@ -1,4 +1,6 @@
 {% extends 'main/layout.html' %}
+{% load django_bootstrap5 %}
+
 {% block title %}
     <title>Auto</title>
 {% endblock %}
@@ -11,13 +13,8 @@
             <h5>Piк випуску: {{ i.year_of_release }}</h5>
             <h5>Модель: {{ i.model }}</h5>
             <h5>ціна продажу: {{ i.selling_price }}</h5>
-        </div>
+        </div><br><br>
     {% endfor %}
+ {% bootstrap_pagination page_obj pages_to_show=2 %}
+
 {% endblock %}
-
-
-
-
-
-
-
