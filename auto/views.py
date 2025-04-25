@@ -12,3 +12,9 @@ class AutoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+    def get_paginate_by(self, queryset):
+        return self.request.GET.get('per_page', 4)
+
+
+
