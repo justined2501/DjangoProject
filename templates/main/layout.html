@@ -25,23 +25,45 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <!-- Профиль продавца -->
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                           href="{% if user.is_authenticated %}{% url 'account:detail' %}{% else %}{% url 'account:login' %}{% endif %}">
-                            Профиль продавца <i class="fa-solid fa-user"></i>
-                        </a>
-                    </li>
 
                     <!-- Новости -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% if user.is_authenticated %}{% url 'news:list' %}{% else %}{% endif %}">
-                            Новости <i class="fa-solid fa-car-side"></i>
+                           href="{% url 'news:list' %}">
+                            Новости <i class="fa-solid fa-newspaper"></i>
                         </a>
                     </li>
 
-                    <!-- Продажи -->
+                    <!-- Донат на ЗСУ -->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'charity:donate' %}">
+                            Збір на авто для ЗСУ <i class="fa-solid fa-handshake-angle"></i>
+                        </a>
+                    </li>
+
+                    <!-- Мои Обьявления-->
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="">
+                            Мои Обьявления <i class="fa-solid fa-handshake-angle"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+
+                    <!-- Корзина -->
+                    <li class="nav-item position-relative" style="padding-left: 62em">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <span class="visually-hidden">товаров в корзине</span>
+                                </span>
+                        </a>
+                    </li>
+
+                    <!-- Выйти -->
                 </ul>
                 {% if user.is_authenticated %}
                     <form action="{% url 'account:logout' %}" method="post" class="ms-3">
@@ -50,21 +72,32 @@
                     </form>
                 {% endif %}
 
+                <!-- Войти -->
                 {% if not user.is_authenticated %}
                     <div class="d-flex align-items-center ms-3">
                         <a href="{% url 'account:login' %}" class="btn btn-outline-primary btn-sm me-2">Войти</a>
                     </div>
                 {% endif %}
 
-                <!-- Поле поиска -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                        <button class="btn btn-success" type="submit">Найти</button>
-                    </form>
+                <!-- Профиль продавца -->
+            {% if user.is_authenticated %}
+                <div class="d-flex align-items-center ms-3">
+                    <a href="{% url 'account:detail' %}" class="btn btn-outline-primary btn-sm d-flex align-items-center text-nowrap" style="max-width: 1100px; overflow: hidden;">
+                        <span class="text-truncate" style="max-width: 115px;">
+                            Профиль {{ user.username }}
+                        </span>
+                        <i class="fa-solid fa-user ms-2"></i>
+                    </a>
+                </div>
+            {% else %}
+                <a href="{% url 'account:create' %}" class="btn btn-outline-success btn-sm ms-2">Зарегистрироваться</a>
+            {% endif %}
+
             </div>
         </div>
     </nav>
 </div>
+
 
 <!-- Картинка -->
 <div class="text-center mt-3">

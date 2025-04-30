@@ -1,24 +1,52 @@
 {% extends 'main/layout.html' %}
+{% load django_bootstrap5 %}
+
 {% block title %}
-    <title>Auto</title>
+    <title>Автомобили</title>
 {% endblock %}
 
 {% block content %}
+<select class="form-select form-select-sm" aria-label="Default select example" style="width: 200px; display: inline-block;">
+  <option selected>Сортировать</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+
     <h1>Автомобили</h1>
-    {% for i in auto %}
-        <div>
-            <h5>Назва виробника: {{ i.title }}</h5>
-            <h5>Piк випуску: {{ i.year_of_release }}</h5>
-            <h5>Модель: {{ i.model }}</h5>
-            <h5>Собівартість: {{ i.cost }}</h5>
-            <h5>Потенційна ціна продажу: {{ i.selling_price }}</h5>
-        </div>
-    {% endfor %}
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Назва виробника</th>
+                <th>Piк випуску</th>
+                <th>Модель</th>
+                <th>Ціна продажу</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in auto %}
+                <tr>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.year_of_release }}</td>
+                    <td>{{ i.model }}</td>
+                    <td>{{ i.selling_price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  {% bootstrap_pagination page_obj extra=request.GET.urlencode %}
+<form method="GET">
+    <select name="paginate_by">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+    </select>
+    <input type="submit" value="Paginate">
+</form>
+
+
 {% endblock %}
-
-
-
-
-
-
-

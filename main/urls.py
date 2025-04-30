@@ -8,4 +8,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('news/', include('news.urls')),
     path('auto/', include('auto.urls')),
+    path('charity/', include('charity.urls')),
+
 ]
