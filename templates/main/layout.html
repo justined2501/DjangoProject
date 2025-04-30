@@ -43,12 +43,14 @@
                     </li>
 
                     <!-- Мои Обьявления-->
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="">
                             Мои Обьявления <i class="fa-solid fa-handshake-angle"></i>
                         </a>
                     </li>
+                    {% endif %}
 
 
                     <!-- Корзина -->
