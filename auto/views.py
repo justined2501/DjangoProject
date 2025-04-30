@@ -16,7 +16,9 @@ class AutoListView(ListView):
             paginate = int(self.request.GET.get('paginate_by', self.paginate_by))
             if paginate in [5,10,25,50]:
                 return paginate
+            else:
+                return self.paginate_by
         except(ValueError, TypeError):
-            pass
-        return self.paginate_by
+            return self.paginate_by
+
 
