@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render
 from django.views.generic import ListView
 
 from auto.models import Auto
@@ -7,14 +9,14 @@ class AutoListView(ListView):
     model = Auto
     template_name = 'auto/list.html'
     context_object_name = 'auto'
-    paginate_by = 3
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    paginate_by = 5
 
     def get_paginate_by(self, queryset):
-        return self.request.GET.get('per_page', 4)
-
-
+        try:
+            paginate = int(self.request.GET.get('paginate_by', self.paginate_by))
+            if 51 > paginate > 1:
+                return paginate
+        except(ValueError, TypeError):
+            pass
+        return self.paginate_by
 

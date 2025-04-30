@@ -43,8 +43,15 @@
                     <!-- Донат на ЗСУ -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% if user.is_authenticated %}{% url 'charity:donate' %}{% else %}{% endif %}">
+                           href="{% url 'charity:donate' %}">
                             Збір на авто для ЗСУ <i class="fa-solid fa-handshake-angle"></i>
+                        </a>
+                    </li>
+                    <!-- Мои Обьявления-->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="">
+                            Мои Обьявления <i class="fa-solid fa-handshake-angle"></i>
                         </a>
                     </li>
 
