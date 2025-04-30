@@ -37,9 +37,9 @@
         </tbody>
     </table>
 
-  {% bootstrap_pagination page_obj  %}
+  {% bootstrap_pagination page_obj extra=request.GET.urlencode %}
 <form method="GET">
-    <select name="paginate_by" id="">
+    <select name="paginate_by">
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="25">25</option>

@@ -14,7 +14,7 @@ class AutoListView(ListView):
     def get_paginate_by(self, queryset):
         try:
             paginate = int(self.request.GET.get('paginate_by', self.paginate_by))
-            if 51 > paginate > 1:
+            if paginate in [5,10,25,50]:
                 return paginate
         except(ValueError, TypeError):
             pass
