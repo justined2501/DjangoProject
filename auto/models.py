@@ -8,6 +8,7 @@ class Auto(models.Model):
     cost = models.DecimalField("Собівартість", max_digits=10, decimal_places=2)
     selling_price = models.DecimalField("Потенційна ціна продажу", max_digits=10, decimal_places=2)
     is_sell = models.BooleanField(default=False)
+    created_at = models.DateField(verbose_name="Дата створення", auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return self.title
