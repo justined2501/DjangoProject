@@ -6,47 +6,58 @@
 {% endblock %}
 
 {% block content %}
-<select class="form-select form-select-sm" aria-label="Default select example" style="width: 200px; display: inline-block;">
-  <option selected>Сортировать</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
+    <form method="GET" id="search_auto">
+        <select class="form-select form-select-sm" aria-label="Default select example"
+                style="width: 250px; display: inline-block;" name="sort" form="search_auto">
+            <option value="cheap" > Від дешевих до дорогих </option>
+            <option value="expensive"> Від дорогих до дешевих </option>
+            <option value="novelty"> Новинки </option>
+            <option value="title">Назва Виробника ↑</option>
+            <option value="-title">Назва Виробника↓</option>
+        </select>
+        <button type="submit" class="btn btn-success">Submit</button>
+    <input name="model">
+    </form>
+
 
     <h1>Автомобили</h1>
 
 
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Назва виробника</th>
-                <th>Piк випуску</th>
-                <th>Модель</th>
-                <th>Ціна продажу</th>
-            </tr>
+        <tr>
+            <th>Назва виробника</th>
+            <th>Piк випуску</th>
+            <th>Модель</th>
+            <th>Ціна продажу</th>
+            <th>Дата створення</th>
+        </tr>
         </thead>
         <tbody>
-            {% for i in auto %}
-                <tr>
-                    <td>{{ i.title }}</td>
-                    <td>{{ i.year_of_release }}</td>
-                    <td>{{ i.model }}</td>
-                    <td>{{ i.selling_price }}</td>
-                </tr>
-            {% endfor %}
+        {% for i in auto %}
+            <tr>
+                <td>{{ i.title }}</td>
+                <td>{{ i.year_of_release }}</td>
+                <td>{{ i.model }}</td>
+                <td>{{ i.selling_price }}</td>
+                <td>{{ i.created_at|date:"d.m.Y" }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-  {% bootstrap_pagination page_obj extra=request.GET.urlencode %}
-<form method="GET">
-    <select name="paginate_by">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-    </select>
-    <input type="submit" value="Paginate">
-</form>
-
+    <div class="row align-items-center">
+        <div class="col-10">
+            {% bootstrap_pagination page_obj extra=request.GET.urlencode %}
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <div>
+                <button type="submit" form="search_auto" name="limit" value="5" class="btn btn-info">5</button>
+                <button type="submit" form="search_auto" name="limit" value="10" class="btn btn-info">10</button>
+                <button type="submit" form="search_auto" name="limit" value="25" class="btn btn-info">25</button>
+                <button type="submit" form="search_auto" name="limit" value="50" class="btn btn-info">50</button>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
