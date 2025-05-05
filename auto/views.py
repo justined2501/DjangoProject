@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views.generic import ListView
@@ -9,7 +11,7 @@ class AutoListView(ListView):
     model = Auto
     template_name = 'auto/list.html'
     context_object_name = 'auto'
-    paginate_by = 1
+    paginate_by = 5
 
     def get_ordering(self) -> str | None:
         sort = self.request.GET.get('sort', self.ordering)
@@ -19,6 +21,8 @@ class AutoListView(ListView):
             "novelty": "-created_at",
             "title": "title",
             "-title": "-title",
+            "year" : "year_of_release",
+            "-year": "-year_of_release" ,
         }
         if sort:
             return sort_dict.get(sort)
