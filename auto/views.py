@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from auto.models import Auto
+from auto.models import Auto, Brand
 
 
 class AutoListView(ListView):
@@ -19,13 +19,22 @@ class AutoListView(ListView):
             "cheap": "cost",
             "expensive": "-cost",
             "novelty": "-created_at",
-            "title": "title",
-            "-title": "-title",
-            "year" : "year_of_release",
-            "-year": "-year_of_release" ,
+            "title": "brand",
+            "-title": "-brand",
+            "year": "year_of_release",
+            "-year": "-year_of_release",
         }
         if sort:
             return sort_dict.get(sort)
+
+
+
+    def get_context_data(self,**kwargs):
+        data = super().get_context_data(**kwargs)
+        brand = Brand.objects.all()
+        data['brand'] = brand
+        return data
+
 
     def get_paginate_by(self, queryset):
         try:
@@ -40,6 +49,12 @@ class AutoListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         model = self.request.GET.get('model')
-        if model is None:
-            return queryset
-        return queryset.filter(model__startswith=model)
+        brand_id = self.request.GET.get('brand')
+        if model:
+            queryset = queryset.filter(model=model)
+        if model:
+            queryset = queryset.filter(model__iexact=model)
+        if brand_id:
+            brand_name = Brand.objects.get(id=brand_id).name
+            queryset = queryset.filter(brand__iexact=brand_name)
+        return queryset

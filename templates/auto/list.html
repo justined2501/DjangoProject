@@ -6,50 +6,77 @@
 {% endblock %}
 
 {% block content %}
+
     <form method="GET" id="search_auto">
+        <!-- селект с сортировкой -->
         <select class="form-select form-select-sm" aria-label="Default select example"
                 style="width: 250px; display: inline-block;" name="sort" form="search_auto">
-            <option value="cheap" > Від дешевих до дорогих </option>
-            <option value="expensive"> Від дорогих до дешевих </option>
-            <option value="novelty"> Новинки </option>
-            <option value="title">Назва Виробника ↑</option>
-            <option value="-title">Назва Виробника↓</option>
-            <option value="year">По году ↑</option>
-            <option value="-year">По году↓</option>
-
-
+            <option value="cheap" {% if request.GET.sort == "cheap" or not request.GET.sort %}selected{% endif %}>Від
+                дешевих до дорогих
+            </option>
+            <option value="expensive" {% if request.GET.sort == "expensive" %}selected{% endif %}>Від дорогих до
+                дешевих
+            </option>
+            <option value="novelty" {% if request.GET.sort == "novelty" %}selected{% endif %}>Новинки</option>
+            <option value="title" {% if request.GET.sort == "title" %}selected{% endif %}>Назва Виробника ↑</option>
+            <option value="-title" {% if request.GET.sort == "-title" %}selected{% endif %}>Назва Виробника↓</option>
+            <option value="year" {% if request.GET.sort == "year" %}selected{% endif %}>По году ↑</option>
+            <option value="-year" {% if request.GET.sort == "-year" %}selected{% endif %}>По году↓</option>
         </select><br><br>
-            <input name="model" placeholder="Введите модель"> <br><br>
-        <button type="submit" class="btn btn-success">Поиск</button><br>
+
+
+        <!-- селект с машинами -->
+        <select name="brand">
+            {% for i in brand %}
+                <option value="{{ i.id }}" {% if request.GET.brand == i.id|stringformat:"s" %}selected{% endif %}>
+                    {{ i.name }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+
+        <!-- поле поиска по моделям -->
+        <input name="model" placeholder="Введите модель"> <br><br>
+
+
+        <!-- кнопка поиска -->
+
+        <button type="submit" class="btn btn-success">Поиск</button>
+        <br>
 
     </form>
 
 
     <h1>Автомобили</h1>
 
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Назва виробника</th>
-            <th>Piк випуску</th>
-            <th>Модель</th>
-            <th>Ціна продажу</th>
-            <th>Дата створення</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for i in auto %}
+    {% if auto %}
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td>{{ i.title }}</td>
-                <td>{{ i.year_of_release }}</td>
-                <td>{{ i.model }}</td>
-                <td>{{ i.selling_price }}</td>
-                <td>{{ i.created_at|date:"d.m.Y" }}</td>
+                <th>Назва виробника</th>
+                <th>Piк випуску</th>
+                <th>Модель</th>
+                <th>Ціна продажу</th>
+                <th>Дата створення</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for i in auto %}
+                <tr>
+                    <td>{{ i.brand }}</td>
+                    <td>{{ i.year_of_release }}</td>
+                    <td>{{ i.model }}</td>
+                    <td>{{ i.selling_price }}</td>
+                    <td>{{ i.created_at|date:"d.m.Y" }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="text-center text-danger">
+            Ничего не найдено
+        </div>
+    {% endif %}
 
     <div class="row align-items-center">
         <div class="col-10">
