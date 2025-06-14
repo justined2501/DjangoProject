@@ -7,6 +7,9 @@ class UserProfile(AbstractUser):
     position = models.CharField("Посада", max_length=30)
     phone = models.CharField("Телефон", max_length=15)
     cars = models.ManyToManyField("auto.Auto", blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return self.username
+
+
