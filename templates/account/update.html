@@ -49,37 +49,95 @@
 
       <div class="col-md-6">
         <label for="id_first_name" class="form-label">Имя</label>
-        <input type="text" class="form-control" id="id_first_name" name="first_name" value="{{ user.first_name|default:'' }}">
+        <input
+                type="text"
+                class="form-control"
+                id="id_first_name"
+                name="first_name"
+                value="{{ user.first_name|default:'' }}"
+                required
+                maxlength="256"
+                minlength="5"
+                title="только А-Я, А-Z, порбел"
+                pattern="^[А-Яа-яA-Za-z]+$"
+
+
+        >
       </div>
 
       <div class="col-md-6">
         <label for="id_last_name" class="form-label">Фамилия</label>
-        <input type="text" class="form-control" id="id_last_name" name="last_name" value="{{ user.last_name|default:'' }}">
+        <input type="text"
+               class="form-control"
+               id="id_last_name"
+               name="last_name"
+               value="{{ user.last_name|default:'' }}"
+               required
+               maxlength="256"
+               minlength="5"
+               pattern="^[А-Яа-яA-Za-z]+$"
+               title="только А-Я, А-Z, порбел"
+        >
       </div>
 
       <div class="col-12">
         <label for="id_middle_name" class="form-label">Отчество</label>
-        <input type="text" class="form-control" id="id_middle_name" name="middle_name" value="{{ user.middle_name|default:'' }}">
+        <input type="text"
+               class="form-control"
+               id="id_middle_name"
+               name="middle_name"
+               value="{{ user.middle_name|default:'' }}"
+               required
+               maxlength="256"
+               minlength="5"
+               pattern="^[А-Яа-яA-Za-z]+$"
+               title="только А-Я, А-Z, порбел"
+        >
       </div>
 
       <div class="col-12">
         <label for="id_position" class="form-label">Должность</label>
-        <input type="text" class="form-control" id="id_position" name="position" value="{{ user.position|default:'' }}">
+        <input type="text"
+               class="form-control"
+               id="id_position"
+               name="position"
+               value="{{ user.position|default:'' }}"
+
+        >
       </div>
 
       <div class="col-md-6">
         <label for="id_email" class="form-label">Почта</label>
-        <input type="email" class="form-control" id="id_email" name="email" value="{{ user.email|default:'' }}">
+        <input type="email"
+               class="form-control"
+               id="id_email"
+               name="email"
+               value="{{ user.email|default:'' }}"
+               required
+        >
       </div>
 
       <div class="col-md-6">
         <label for="id_phone" class="form-label">Телефон</label>
-        <input type="tel" class="form-control" id="id_phone" name="phone" value="{{ user.phone|default:'' }}">
+        <input type="tel"
+               class="form-control"
+               id="id_phone"
+               name="phone"
+               value="{{ user.phone|default:'' }}"
+               required
+               pattern="^\+380\d{9}$"
+               title="Номер телефона введен некорректно пример: (+380*********)"
+        >
       </div>
 
       <div class="col-12">
         <label for="id_image" class="form-label">Фото профиля</label>
-        <input type="file" class="form-control" id="id_image" name="image">
+        <input type="file"
+               class="form-control"
+               id="id_image"
+               name="image"
+               accept=".png, .jpg, .jpeg"
+        >
       </div>
 
       <div class="col-12 text-center">
