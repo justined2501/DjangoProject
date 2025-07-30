@@ -43,6 +43,9 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('account:detail')
 
 
+
+
+
 class UserProfileLoginView(LoginView):
     form_class = AuthenticationForm
     template_name = 'account/login.html'

@@ -1,19 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-import string
+from main.constant_for_app import validate_ukr, ukrainian_name_validator, phone_validator
 from account.models import UserProfile
-from django.core.validators import RegexValidator
 
-ukrainian_name_validator = RegexValidator(
-    regex=r'^[А-ЩЬЮЯЄІЇҐа-щьюяєіїґ\- ]+$',
-    message="Фамилия должна содержать только украинские буквы, пробел или дефис."
-)
 
-phone_validator = RegexValidator(
-    regex=r'^\+380\d{9}$',
-    message='Телефон должен быть в формате +380XXXXXXXXX.'
-)
 
 class UserProfileCreateForm(UserCreationForm):
     class Meta:
@@ -33,23 +24,28 @@ class UserProfileCreateForm(UserCreationForm):
 class UserProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
         max_length=256,
+        min_length=4,
         required=True,
         widget=forms.TextInput(attrs={'class': 'form-control'}),
     )
     last_name = forms.CharField(
         max_length=256,
+        min_length=4,
         required=True,
         validators=[ukrainian_name_validator],
         widget=forms.TextInput(attrs={'class': 'form-control'}),
     )
     middle_name = forms.CharField(
         max_length=256,
+        min_length=4,
+        required=False,
         widget=forms.TextInput(attrs={'class': 'form-control'}),
     )
     phone = forms.CharField(
         max_length=13,
         min_length=10,
         required=True,
+        validators=[phone_validator],
         widget=forms.TextInput(attrs={'class': 'form-control'}),
     )
     email = forms.EmailField(
@@ -66,39 +62,24 @@ class UserProfileUpdateForm(forms.ModelForm):
         }
 
 
-    def _validate_ukr(self, value, field_label):
-        allowed_chars = [' ', '-']
-        for char in value:
-            if char in allowed_chars:
-                continue
-            elif char.isdigit():
-                raise ValidationError(f"{field_label} не должно содержать цифры")
-            elif char in string.punctuation:
-                raise ValidationError(f"{field_label} не должно содержать спец символы.")
-            elif char.isalpha():
-                if not ('А' <= char <= 'я' or char in 'ЁёІіЇїЄєҐґ'):
-                    raise ValidationError(f"{field_label} должно содержать только кириллические буквы")
-            else:
-                raise ValidationError(f"{field_label}: недопустимый символ")
-        return value
-
-
     def clean_first_name(self):
         value = self.cleaned_data['first_name']
-        return self._validate_ukr(value, 'first_name')
-
+        if value:
+            return validate_ukr(value, 'first_name')
+        return value
 
 
     def clean_last_name(self):
         value = self.cleaned_data['last_name']
-        return self._validate_ukr(value, 'last_name')
-
-
+        if value:
+            return validate_ukr(value, 'last_name')
+        return value
 
     def clean_middle_name(self):
         value = self.cleaned_data['middle_name']
-        return self._validate_ukr(value, 'middle_name')
-
+        if value:
+            validate_ukr(value, 'middle_name')
+        return value
 
 
     def clean_image(self):
