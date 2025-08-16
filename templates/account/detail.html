@@ -49,6 +49,13 @@
   </div>
 </nav>
 
+{% if user.image %}
+  <img src="{{ user.image.url }}" alt="Фото профиля">
+{% else %}
+  <p>Фото не загружено</p><a href="{% url 'account:update' %}">(загрузить фото)</a>
+
+{% endif %}
+
 
 
 {% endblock %}
